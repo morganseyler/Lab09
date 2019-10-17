@@ -28,7 +28,7 @@ public class StackRestaurant<T> extends Restaurant<T> {
 	public StackRestaurant()
 	{
 		//TODO: implement this
-		orderList = new ArrayList<Order<T>>();
+		orderList = new ArrayList<Order<T>>(ORDER_LIST_SIZE);
 		topOfStack = -1;
 	}
     /**
@@ -42,8 +42,10 @@ public class StackRestaurant<T> extends Restaurant<T> {
 	public boolean addOrder(Order<T> order)
 	{
 		//TODO: implement this
-		if()
+		
+
 		orderList.add(order);
+		topOfStack++;
 		return true;
 	}
     /**
@@ -53,6 +55,15 @@ public class StackRestaurant<T> extends Restaurant<T> {
 	protected Order<T> completeOrder()
 	{
 		//TODO: implement this
+		if(orderList.size()==0)
+		{
+			return null;
+		}
+		else
+		{
+			topOfStack--;
+			return orderList.get(0);
+		}
 	}
     /**
      * Computes the number of orders in the restaurant that have not been completed.
@@ -63,11 +74,29 @@ public class StackRestaurant<T> extends Restaurant<T> {
 	public int numberRemainingOrder()
 	{
 		//TODO: implement this
+		int numRemaining = 0;
+		
+		for (int i = 0; i < orderList.size(); ++i)
+		{
+			if(orderList.get(i)!=null)
+			{
+				numRemaining++;
+			}
+		}
+		return numRemaining;
 	}
 	
 	@Override
 	protected Order<T> checkNextCompletedOrder()
 	{
 		//TODO: implement this
+		if(numberRemainingOrder() > 0)
+		{
+			return orderList.get(topOfStack);
+		}
+		else
+		{
+			return null;
+		}
 	}
 }
