@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.PriorityQueue;
 
 /** 
  * Implementation of the Restaurant abstract class. Stores and completes tickets based on a queue data structure.
@@ -26,6 +27,8 @@ public class QueueRestaurant<T> extends Restaurant<T>{
 	public QueueRestaurant()
 	{
 		//TODO: implement this
+		orderList = new ArrayList<Order<T>>(ORDER_LIST_SIZE);
+		numOrders = 0;
 	}
     /**
      * Add an order to the restaurant. If there is no more room (number of tickets in the restaurant == maxSize of
@@ -54,6 +57,16 @@ public class QueueRestaurant<T> extends Restaurant<T>{
 	protected Order<T> completeOrder()
 	{
 		//TODO: implement this
+		if(numOrders == 0)
+		{
+			return null;
+		}
+		else
+		{
+			orderList.remove(numOrders);
+			numOrders--;
+			return orderList.get(numOrders);
+		}
 	}
     /**
      * Computes the number of orders in the restaurant that have not been completed.
@@ -64,6 +77,16 @@ public class QueueRestaurant<T> extends Restaurant<T>{
 	protected int numberRemainingOrder()
 	{
 		//TODO: implement this
+		int numRemaining = 0;
+		
+		for (int i = 0; i < orderList.size(); ++i)
+		{
+			if(orderList.get(i)!=null)
+			{
+				numRemaining++;
+			}
+		}
+		return numRemaining;
 	}
     /**
      * @return the next order to be completed (but do not remove it)
@@ -72,5 +95,6 @@ public class QueueRestaurant<T> extends Restaurant<T>{
 	protected Order<T> checkNextCompletedOrder()
 	{
 		//TODO: implement this;
+		return orderList.get(numOrders);
 	}
 }
