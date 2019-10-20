@@ -44,9 +44,12 @@ public class QueueRestaurant<T> extends Restaurant<T>{
 		{
 			return false;
 		}
-		orderList.add(order);
-		numOrders++;
-		return true;
+		else
+		{
+			orderList.add(order);
+			numOrders++;
+			return true;
+		}
 	}
     /**
      * remove and return next Order based on queue data structure
@@ -57,16 +60,11 @@ public class QueueRestaurant<T> extends Restaurant<T>{
 	protected Order<T> completeOrder()
 	{
 		//TODO: implement this
-		if(numOrders == 0)
-		{
-			return null;
-		}
-		else
-		{
-			orderList.remove(numOrders);
+			Order<T> completed = orderList.get(0);
+			orderList.remove(0);
 			numOrders--;
-			return orderList.get(numOrders);
-		}
+			return completed;
+		
 	}
     /**
      * Computes the number of orders in the restaurant that have not been completed.
@@ -95,6 +93,14 @@ public class QueueRestaurant<T> extends Restaurant<T>{
 	protected Order<T> checkNextCompletedOrder()
 	{
 		//TODO: implement this;
-		return orderList.get(numOrders);
+		if(numberRemainingOrder() > 0)
+		{
+			return orderList.get(orderList.size()-1);
+		}
+		else
+		{
+			return null;
+		}
+
 	}
 }

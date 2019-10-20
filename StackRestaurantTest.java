@@ -22,7 +22,9 @@ public class StackRestaurantTest {
 	public void testAddOrder() throws AssertException 
 	{
 		stack = new StackRestaurant<String>();
-		//TODO:implement this
+		Order<String> order = new Order<String>("Sandwich", 5);
+		Assert.assertTrue(stack.addOrder(order));
+		Assert.assertEquals(order,stack.completeOrder());
 	}
 	/**
 	 * test completeOrder() using at least three orders
@@ -44,6 +46,13 @@ public class StackRestaurantTest {
 	{
 		stack = new StackRestaurant<String>();
 		//TODO: implement this
+		Order<String> order1 = new Order<String>("Mac", 1);
+		Order<String> order2 = new Order<String>("Cheese", 1);
+		stack.addOrder(order1);
+		stack.addOrder(order2);
+		Assert.assertEquals(2, stack.numberRemainingOrder());
+		stack.completeOrder();
+		stack.completeOrder();
 	}
 	/**
 	 * test both cases of completeOrder
@@ -53,6 +62,11 @@ public class StackRestaurantTest {
 	{
 		stack = new StackRestaurant<String>();
 		//TODO: implement this
+		Assert.assertNull(stack.checkNextCompletedOrder());
+		Order<String> order = new Order<String>("Sandwich", 5);
+		stack.addOrder(order);
+		Assert.assertEquals(order, stack.checkNextCompletedOrder());
+		stack.completeOrder();
 	}
 }
 

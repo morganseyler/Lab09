@@ -42,11 +42,9 @@ public class StackRestaurant<T> extends Restaurant<T> {
 	public boolean addOrder(Order<T> order)
 	{
 		//TODO: implement this
-		
-
-		orderList.add(order);
-		topOfStack++;
-		return true;
+			orderList.add(order);
+			topOfStack++;
+			return true;
 	}
     /**
      * [Internal Code - This is not required by the specification but can be a useful construct.]
@@ -54,16 +52,20 @@ public class StackRestaurant<T> extends Restaurant<T> {
 	@Override
 	protected Order<T> completeOrder()
 	{
+		Order<T> completed = orderList.get(topOfStack);
 		//TODO: implement this
+	/*
 		if(orderList.size()==0)
 		{
 			return null;
 		}
 		else
 		{
+	*/	
+			orderList.remove(completed);
 			topOfStack--;
-			return orderList.get(0);
-		}
+			return completed;
+		
 	}
     /**
      * Computes the number of orders in the restaurant that have not been completed.

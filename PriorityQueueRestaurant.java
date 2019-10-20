@@ -22,6 +22,7 @@ public class PriorityQueueRestaurant<T> extends Restaurant<T>
     public PriorityQueueRestaurant()
     {
     	//TODO: implement this
+    	orderList = new PriorityQueue<Order<T>>();
     }
     /**
      * Add an order to the restaurant. If there is no more room (number of tickets in the restaurant == maxSize of
@@ -34,6 +35,8 @@ public class PriorityQueueRestaurant<T> extends Restaurant<T>
     public boolean addOrder(Order<T> order)
     {
     	//TODO: implement this
+    	return orderList.add(order);
+    
     }
     /**
      * @return The next order to be removed.
@@ -41,7 +44,9 @@ public class PriorityQueueRestaurant<T> extends Restaurant<T>
     @Override
     protected Order<T> completeOrder()
     {
-    	//TODO: implement this
+    	
+    	return orderList.poll();
+
     }
     /**
      * Gets the number of orders stored.
@@ -50,7 +55,8 @@ public class PriorityQueueRestaurant<T> extends Restaurant<T>
     @Override
     protected int numberRemainingOrder()
     {
-    	//TODO: implement this
+    	return orderList.size();
+
     }
     /**
      * Get the next order to be completed.
@@ -59,6 +65,7 @@ public class PriorityQueueRestaurant<T> extends Restaurant<T>
     @Override
     public Order<T> checkNextCompletedOrder()
     {
-    	//TODO: implement this
+    	return orderList.peek();
+
     }
 }

@@ -72,5 +72,17 @@ public class Order<T> implements Comparable<Order<T>>
 	public int compareTo(Order<T> order)
 	{
 		//TODO: implement this
+		if(order.getTimeOrdered() > this.timeOrdered)
+		{
+			return -1;
+		}
+		else if (order.getTimeOrdered() < this.timeOrdered)
+		{
+			return 1;
+		}
+		else
+		{
+			return 0;
+		}
 	}
 }
